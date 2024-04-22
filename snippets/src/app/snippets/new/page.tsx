@@ -33,7 +33,7 @@ export default function SnippetCreatePage() {
           />
         </div>
         {formState.message ? (
-          <div className="my-2 p-2 bg-red-200 rounded border border-red-400">
+          <div className="my-2 p-2 bg-red-200 rounded border-red-400">
             {formState.message}
           </div>
         ) : null}
