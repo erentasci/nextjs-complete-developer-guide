@@ -3,7 +3,7 @@ const paths = {
         return ("/");
     },
     topicShow(topicslug:string){
-        return `/topic/${topicslug}`
+        return `/topics/${topicslug}`
     },  
     postCreate(topicslug:string){
         return `/topic/${topicslug}/posts/new`
