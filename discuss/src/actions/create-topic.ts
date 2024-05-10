@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/auth";
 import { z } from "zod";
 
 const createTopicSchema = z.object({
@@ -12,7 +13,8 @@ const createTopicSchema = z.object({
 interface CreateTopicFormState {
     errors:{
         name?: string[],
-        description?:string[]
+        description?:string[],
+        _form: string[]
     }
 }
 
@@ -31,9 +33,15 @@ export async function createTopic(formState:CreateTopicFormState,formData: FormD
    }
 
 
-   return {
-    errors:{}
+   const session = await auth();
+   if(!session || !session.user){
+    return {
+        errors:{
+            _form:["You must be signed in to do this."]
+        }
+    }
    }
+
    
     
 }
