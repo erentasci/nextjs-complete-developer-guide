@@ -24,7 +24,6 @@ interface CreateTopicFormState {
 }
 
 export async function createTopic(formState:CreateTopicFormState,formData: FormData): Promise<CreateTopicFormState>{
-    // TODO: revalidate the homepage 
 
    const result = createTopicSchema.safeParse({
     name : formData.get('name'),
