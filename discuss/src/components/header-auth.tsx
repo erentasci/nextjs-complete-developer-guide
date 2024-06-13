@@ -1,29 +1,33 @@
-"use client";
+'use client';
 
-import * as actions from "@/actions";
+import Link from 'next/link';
 import {
-  Avatar,
-  Button,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
   NavbarItem,
+  Input,
+  Button,
+  Avatar,
   Popover,
-  PopoverContent,
   PopoverTrigger,
-} from "@nextui-org/react";
-import { useSession } from "next-auth/react";
+  PopoverContent,
+} from '@nextui-org/react';
+import { useSession } from 'next-auth/react';
+import * as actions from '@/actions';
 
 export default function HeaderAuth() {
   const session = useSession();
-  let authContent: React.ReactNode;
 
-  if (session.status === "loading") {
+  let authContent: React.ReactNode;
+  if (session.status === 'loading') {
     authContent = null;
   } else if (session.data?.user) {
     authContent = (
-      <Popover>
+      <Popover placement="left">
         <PopoverTrigger>
-          <Avatar src={session.data?.user.image || ""} />
+          <Avatar src={session.data.user.image || ''} />
         </PopoverTrigger>
-
         <PopoverContent>
           <div className="p-4">
             <form action={actions.signOut}>
@@ -38,7 +42,7 @@ export default function HeaderAuth() {
       <>
         <NavbarItem>
           <form action={actions.signIn}>
-            <Button type="submit" variant="bordered" color="primary">
+            <Button type="submit" color="secondary" variant="bordered">
               Sign In
             </Button>
           </form>
@@ -46,7 +50,7 @@ export default function HeaderAuth() {
 
         <NavbarItem>
           <form action={actions.signIn}>
-            <Button type="submit" variant="flat" color="primary">
+            <Button type="submit" color="primary" variant="flat">
               Sign Up
             </Button>
           </form>
