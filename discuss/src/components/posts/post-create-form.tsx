@@ -42,6 +42,14 @@ export default function PostCreateForm() {
               labelPlacement="outside"
               placeholder="Content"
             />
+
+            {formState.errors._form ? (
+              <div className="rounded p-2 bg-red-200 border border-red-400 text-red-900">
+                {" "}
+                {formState.errors._form.join(", ")}{" "}
+              </div>
+            ) : null}
+
             <FormButton>Create Post</FormButton>
           </div>
         </form>

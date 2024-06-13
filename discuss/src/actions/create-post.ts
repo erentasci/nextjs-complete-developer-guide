@@ -1,5 +1,6 @@
 "use server";
 
+import { auth } from "@/auth";
 import { z } from "zod";
 
 const createPostSchema = z.object({
@@ -25,6 +26,16 @@ export async function createPost(formState:CreatePostFormState,formData:FormData
     if(!result.success){
         return {
             errors:result.error.flatten().fieldErrors
+        }
+    }
+
+    const session = await auth();
+
+    if(!session || !session.user) {
+        return {
+            errors:{
+                _form: ["You must be signed in to do this"],
+            }
         }
     }
 
